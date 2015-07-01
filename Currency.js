@@ -106,7 +106,7 @@ Ext.define('Ext.ux.form.field.Currency', {
                 position1 = value;
                 position2 = this.isCurrency ? ' ' + this.currencySymbol : '';
             }
-            return Ext.String.format('{0}{1}{2}', (neg ? '-' : ''), position1, position2);
+            return Ext.String.format('{0}{1}{2}', position1, (neg ? '-' : ''), position2);
         }
     },
 
