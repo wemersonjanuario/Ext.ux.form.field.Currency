@@ -54,6 +54,24 @@ Ext.define('Ext.ux.form.field.Currency', {
      * setValue
      */
     setValue: function (value) {
+        var me = this,
+            bind, valueBind;
+
+        // This portion of the code is to prevent a binding from stomping over
+        // the typed value. Say we have decimalPrecision 4 and the user types
+        // 1.23456. The value of the field will be set as 1.2346 and published to
+        // the viewmodel, which will trigger the binding to fire and setValue to
+        // be called on the field, which would then set the value (and rawValue) to
+        // 1.2346. Instead, if we have focus and the value is the same, just leave
+        // the rawValue alone
+        if (me.hasFocus) {
+            bind = me.getBind();
+            valueBind = bind && bind.value;
+            if (valueBind && valueBind.syncing && value === me.value) {
+                return me;
+            }
+        }
+        
         // MOD - chamacs
         Ext.ux.form.field.Currency.superclass.setValue.apply(this, [value != null ? value.toString().replace('.', this.decimalSeparator) : value]);
 
