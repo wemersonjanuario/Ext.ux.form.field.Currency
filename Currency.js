@@ -6,8 +6,10 @@
  * @description: This class provide additional format to numbers by extending Ext.form.field.Number
  *
  * @author: Greivin Britton
+ * @contributor: Wemerson Januario (wemerson.januario@gmail.com)
  * @email: brittongr@gmail.com
  * @version: 2 compatible with ExtJS 4 (And ExtJS 5 - chamacs)
+ *
  */
 Ext.define('Ext.ux.form.field.Currency', {
     extend: 'Ext.form.field.Number',//Extending the NumberField
